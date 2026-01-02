@@ -1,0 +1,66 @@
+---
+services:
+  dbservice:
+    container_name: db
+    image: dbimage
+    environment:
+      - n=value
+    networks:
+      - db-network
+
+  frontendSerive:
+    container_name: frontendcont
+    image: frontendimage
+    ports:
+      - "5000:5000"
+    networks:
+      - frontend-network
+      - app-network
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+
+
+  authService:
+    container_name: authcont
+    image: authimage
+    networks:
+      - app-network
+      - db-network
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+  
+  bookService:
+    container_name: bookcont
+    image: bookimage
+    networks:
+      - app-network
+      - db-network
+    deploy:
+      replicas: 3
+      restart_policy: 
+        condition: on-failure
+  
+  borrowService:
+    container_name: borrowcont
+    image: borrowimage
+    networks:
+      - app-network
+      - db-network
+    deploy:
+      replicas: 3
+      restart_policy: 
+        condition: on-failure
+
+
+#overlay network used as the we are working multiple hosts
+networks:
+  db-network:
+    driver: overlay
+  frontend-network:
+    driver: overlay
+  app-network:
+    driver: overlay
