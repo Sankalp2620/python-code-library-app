@@ -1,15 +1,9 @@
-# Base image
+#python image as python application
 FROM python:3.9-slim
-
-# Set working directory
 WORKDIR /app
-
-# Install dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy service code
+RUN pip install  --no-cache-dir -r requirements.txt
 COPY . .
+ENTRYPOINT [ "python" ]
+CMD [ "book_service.py" ]
 
-# Default command (will be overridden in docker-compose)
-CMD ["python", "book_service.py"]

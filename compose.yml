@@ -1,0 +1,63 @@
+---
+services:
+  db:
+    image: sankalp2620/docker:db
+    networks:
+      - db-network
+    deploy: 
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  frontend:
+    image: sankalp2620/docker:frontend
+    ports:
+      - "5000:5000"
+    networks:
+      - frontend-network
+      - app-network
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+
+
+  auth_service:
+    image: sankalp2620/docker:auth
+    networks:
+      - app-network
+      - db-network
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+  
+  book_service:
+    image: sankalp2620/docker:book
+    networks:
+      - app-network
+      - db-network
+    deploy:
+      replicas: 3
+      restart_policy: 
+        condition: on-failure
+  
+  borrow_service:
+    image: sankalp2620/docker:borrow
+    networks:
+      - app-network
+      - db-network
+    deploy:
+      replicas: 3
+      restart_policy: 
+        condition: on-failure
+
+
+#overlay network used as the we are working multiple hosts
+networks:
+  db-network:
+    driver: overlay
+  frontend-network:
+    driver: overlay
+  app-network:
+    driver: overlay

@@ -1,15 +1,11 @@
-# Base image
+#docker file for the auth service
 FROM python:3.9-slim
-
-# Set working directory
+#adding the path
 WORKDIR /app
-
-# Install dependencies
+#copying the requirements to default
 COPY requirements.txt .
+
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy service code
 COPY . .
-
-# Default command (will be overridden in docker-compose)
 CMD ["python", "auth_service.py"]
+
