@@ -1,7 +1,7 @@
-Microservices project
-Tech stack:
-Docker 
 Docker swarm: Manging the single service on mulitple servers
+
+
+
 <img width="933" height="640" alt="image" src="https://github.com/user-attachments/assets/19f4a6ce-0c17-486b-81c2-baf8190ddd36" />
 
 
