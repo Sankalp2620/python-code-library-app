@@ -1,4 +1,20 @@
-Clone the repo 
+Microservices project
+Tech stack:
+Docker 
+Docker swarm: Manging the single service on mulitple servers
+
+
+Docker compose -> Managing the multiple services in a single host 
+Docker stack -> Docker swarm + Docker compose
+ Docker Stack => managing the muliple services in multiple host / servers
+git clone
+
+
+
+**docker swarm init**
+Auto generated command for when intitialize the docker swam
+**docker swarm join --token <tockenid@ipaddress>**
+
 
 docker build -t dbimage database/ <br />
 docker build -t authimage auth/ <br />
@@ -16,4 +32,5 @@ docker run -d --name book_service -p 5002:5002 --network mynet bookimage <br />
 docker run -d --name borrow_service  -p 5003:5003 --network mynet borrowimage <br />
 docker run -d --name frontend  -p 5000:5000 --network mynet  appimage <br /> 
 
- 
+------------
+
