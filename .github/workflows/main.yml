@@ -11,7 +11,7 @@ on:
 jobs:
   build:
   #explain the below code
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
